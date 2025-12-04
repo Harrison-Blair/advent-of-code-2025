@@ -1,5 +1,5 @@
 # advent-of-code-2025
-My (Advent of Code)[https://adventofcode.com/] 2025 solutions repository. My first time participating.
+My [Advent of Code](https://adventofcode.com/) 2025 solutions repository. My first time participating.
 
 ## Dev Notes
 I've tried my best to vary the languages used throughout the event. My preliminary strategy is to vary languages day-by-day, opposed to part by part. This may change depending on the scope of the problem. I feel this is the best way to focus on the solution rather than on transcribing existing code between parts of a day.
