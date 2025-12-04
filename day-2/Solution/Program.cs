@@ -1,7 +1,4 @@
-﻿using System;
-using System.IO;
-
-class Program
+﻿class Program
 {
     static bool debug;
 
@@ -101,11 +98,13 @@ class Program
 
         string path = "/home/penguin/source/advent-of-code-2025/day-2/input.txt";
 
-        if (GetRangesFromFile(path) is long[][] ranges)
+        if (GetRangesFromFile(path) is long[][] ranges) //Assignment and null check
         {
             long partOneTotal = PartOne(ranges);
+            long partTwoTotal = PartTwo(ranges);
 
             Console.WriteLine("[SOLUTION] Total for PART-1 is: " + partOneTotal);
+            Console.WriteLine("[SOLUTION] Total for PART-2 is: " + partTwoTotal);
         }
     }
 }
