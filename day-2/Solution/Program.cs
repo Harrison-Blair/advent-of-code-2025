@@ -86,6 +86,13 @@ class Program
         }
         return total;
     }
+    
+    static long PartTwo(long[][] ranges)
+    {
+        long total = 0;
+
+        return total;
+    }
 
     public static void Main(string[] args)
     {
