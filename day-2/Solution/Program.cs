@@ -83,12 +83,31 @@
         }
         return total;
     }
-    
+
     static long PartTwo(long[][] ranges)
     {
-        long total = 0;
+        List<long> invalids = new List<long>();
 
-        return total;
+        foreach (long[] range in ranges)
+        {
+            for (long number = range[0]; number <= range[1]; number++)
+            {
+                string numberString = number.ToString();
+                for (int i = 1; i < numberString.Length; i++)
+                {
+                    string candidate = numberString.Substring(0, i);
+                    if (numberString.Length % candidate.Length != 0) continue;
+
+                    int repetitions = numberString.Length / candidate.Length;
+                    string repetitionCandidate = string.Concat(Enumerable.Repeat(candidate, repetitions));
+                    if (repetitionCandidate == numberString && !invalids.Contains(long.Parse(repetitionCandidate)))
+                    {
+                        invalids.Add(long.Parse(repetitionCandidate));
+                    }
+                }
+            }
+        }
+        return invalids.Sum();
     }
 
     public static void Main(string[] args)
