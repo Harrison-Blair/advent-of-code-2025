@@ -5,7 +5,7 @@
 
 455 Possible solutions given the formula: 
 ```math
-\(\binom{15}{3} = \frac{15!}{3!(15-3)!}\)
+\binom{15}{3} = \frac{15!}{3!(15-3)!}
 ```
 
 ## Oder of Ops
