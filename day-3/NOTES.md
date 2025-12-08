@@ -3,12 +3,19 @@
 - 12/n Chosen `Voltages`
 - Leading number is most important factor in value
 
+The below math seems to not be applicable, given that the positions are immutable.
+
 **455 Possible solutions** given the formula: 
 ```math
 C(n,r) =\binom{n}{r} = \frac{n!}{(r!(n-r)!)}
-
 ```
+
 Where `n` is the total number of total options and `r` is the number chosen options
+
+*for the cases of this, it seems that the following are true:*
+- `n` = 100
+- `r` = 88
+    - `r` = `n` - 12
 
 The goal seems to be to limit the number of candidate possibilities through various means. Below I have constructed an order of operations to help limit those possiblities.
 

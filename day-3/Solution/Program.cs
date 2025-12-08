@@ -1,8 +1,8 @@
 ﻿class Program
 {
-    static List<List<long>>? GetlongsFromFile(string path)
+    static List<List<int>>? GetIntsFromFile(string path)
     {
-        List<List<long>> longs = new List<List<long>>();
+        List<List<int>> ints = new List<List<int>>();
         try
         {
             if (!File.Exists(path))
@@ -10,29 +10,29 @@
 
             foreach (string line in File.ReadAllLines(path))
             {
-                List<long> linelongs = new List<long>();
+                List<int> lineInts = new List<int>();
                 char[] charArr = line.ToCharArray();
                 foreach (char c in charArr)
                 {
-                    linelongs.Add(c - '0');
+                    lineInts.Add(int.Parse(c.ToString()));
                 }
-                longs.Add(linelongs);
+                ints.Add(lineInts);
             }
         }
         catch (Exception e)
         {
             Console.WriteLine($"Error: {e.Message}");
         }
-        return longs;
+        return ints;
     }
 
-    static long PartOne(List<List<long>> batteryBanks)
+    static long PartOne(List<List<int>> batteryBanks)
     {
         long total = 0;
 
-        foreach (List<long> battery in batteryBanks)
+        foreach (List<int> battery in batteryBanks)
         {
-            long maxCharge = 0;
+            int maxCharge = 0;
             for (int i = battery.Count() - 2; i >= 0; i--)
             {
                 for (int j = battery.Count() - 1; j >= 1; j--)
@@ -48,36 +48,26 @@
         return total;
     }
 
-    static List<long> FindLeading(List<long> batteryBank)
+    static void PrintList(List<int> list)
     {
-        int largestIndex = 0;
-        for (int i = 0; i < 4; i++)
-        {
-            if (batteryBank[i] > batteryBank[largestIndex])
-                largestIndex = i;
-        }
-        List<long> longs = batteryBank.Slice(largestIndex, batteryBank.Count - largestIndex);
-
-        return longs;
+        foreach (int num in list)
+            Console.Write(num);
+        Console.WriteLine();
     }
 
-    static long ListToNumber(List<long> list)
+    static ulong PartTwo(List<List<int>> batteryBanks)
     {
-        long number = 0;
-        for (int i = 0; i < list.Count; i++)
-        {
-            number += (long)Math.Pow(10, list.Count - i - 1) * list[i];
-        }
-        return number;
-    }
+        ulong total = 0;
 
-    static long PartTwo(List<List<long>> batteryBanks) {
-        long total = 0;
-
-        foreach (List<long> batteryBank in batteryBanks)
+        foreach (List<int> batteryBank in batteryBanks)
         {
-            Console.WriteLine(ListToNumber(batteryBank));
-            Console.WriteLine(ListToNumber(FindLeading(batteryBank)));
+            Console.WriteLine("Processing New Battery...");
+            Console.Write("\tInput Voltages : ");
+            PrintList(batteryBank);
+            Console.WriteLine("\tInput Length : " + batteryBank.Count);
+            Console.WriteLine("\tVoltages To Remove : " + (batteryBank.Count - 12));
+
+            Console.WriteLine("----");
         }
         return total;
     }
@@ -86,7 +76,7 @@
     {
         string path = "/home/penguin/source/advent-of-code-2025/day-3/example.txt";
 
-        if (GetlongsFromFile(path) is List<List<long>> batteryBanks)
+        if (GetIntsFromFile(path) is List<List<int>> batteryBanks)
         {
             Console.WriteLine("[RESULT] PART-1 : " + PartOne(batteryBanks));
             Console.WriteLine("[RESULT] PART-2 : " + PartTwo(batteryBanks));
