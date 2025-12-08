@@ -1,8 +1,8 @@
 ﻿class Program
 {
-    static List<List<int>>? GetIntsFromFile(string path)
+    static List<List<long>>? GetlongsFromFile(string path)
     {
-        List<List<int>> ints = new List<List<int>>();
+        List<List<long>> longs = new List<List<long>>();
         try
         {
             if (!File.Exists(path))
@@ -10,29 +10,29 @@
 
             foreach (string line in File.ReadAllLines(path))
             {
-                List<int> lineInts = new List<int>();
+                List<long> linelongs = new List<long>();
                 char[] charArr = line.ToCharArray();
                 foreach (char c in charArr)
                 {
-                    lineInts.Add(c - '0');
+                    linelongs.Add(c - '0');
                 }
-                ints.Add(lineInts);
+                longs.Add(linelongs);
             }
         }
         catch (Exception e)
         {
             Console.WriteLine($"Error: {e.Message}");
         }
-        return ints;
+        return longs;
     }
 
-    static int PartOne(List<List<int>> batteryBanks)
+    static long PartOne(List<List<long>> batteryBanks)
     {
-        int total = 0;
+        long total = 0;
 
-        foreach (List<int> battery in batteryBanks)
+        foreach (List<long> battery in batteryBanks)
         {
-            int maxCharge = 0;
+            long maxCharge = 0;
             for (int i = battery.Count() - 2; i >= 0; i--)
             {
                 for (int j = battery.Count() - 1; j >= 1; j--)
@@ -44,18 +44,52 @@
                 }
             }
             total += maxCharge;
-            Console.WriteLine(maxCharge);
+        }
+        return total;
+    }
+
+    static List<long> FindLeading(List<long> batteryBank)
+    {
+        int largestIndex = 0;
+        for (int i = 0; i < 4; i++)
+        {
+            if (batteryBank[i] > batteryBank[largestIndex])
+                largestIndex = i;
+        }
+        List<long> longs = batteryBank.Slice(largestIndex, batteryBank.Count - largestIndex);
+
+        return longs;
+    }
+
+    static long ListToNumber(List<long> list)
+    {
+        long number = 0;
+        for (int i = 0; i < list.Count; i++)
+        {
+            number += (long)Math.Pow(10, list.Count - i - 1) * list[i];
+        }
+        return number;
+    }
+
+    static long PartTwo(List<List<long>> batteryBanks) {
+        long total = 0;
+
+        foreach (List<long> batteryBank in batteryBanks)
+        {
+            Console.WriteLine(ListToNumber(batteryBank));
+            Console.WriteLine(ListToNumber(FindLeading(batteryBank)));
         }
         return total;
     }
 
     public static void Main()
     {
-        string path = "/home/penguin/source/advent-of-code-2025/day-3/input.txt";
+        string path = "/home/penguin/source/advent-of-code-2025/day-3/example.txt";
 
-        if (GetIntsFromFile(path) is List<List<int>> batteryBanks)
+        if (GetlongsFromFile(path) is List<List<long>> batteryBanks)
         {
-            Console.WriteLine(PartOne(batteryBanks));
+            Console.WriteLine("[RESULT] PART-1 : " + PartOne(batteryBanks));
+            Console.WriteLine("[RESULT] PART-2 : " + PartTwo(batteryBanks));
         }
     }
 }
