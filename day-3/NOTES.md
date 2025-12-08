@@ -1,18 +1,29 @@
 # Part 3 Notes
 
-- 12/15 Chosen Items
-- Leading number is most important factor in size
+- 12/n Chosen `Voltages`
+- Leading number is most important factor in value
 
-455 Possible solutions given the formula: 
+**455 Possible solutions** given the formula: 
 ```math
-\C(n,r) =\binom{n}{r} = \frac{n!}{(r!(n-r)!)}
+C(n,r) =\binom{n}{r} = \frac{n!}{(r!(n-r)!)}
+
 ```
 Where `n` is the total number of total options and `r` is the number chosen options
 
+The goal seems to be to limit the number of candidate possibilities through various means. Below I have constructed an order of operations to help limit those possiblities.
+
 ## Oder of Ops
 
+### Find the Leading # - Recursive
+- Recursively find the highest next number that leaves the `batteryBank` with >= 12 charges.
+    - Recursion ends when `batteryBank.Count` == 12
 
-- Check for highest number of first 4
-    - If highest is the 4th (index 3) -> Return rest of number as largest
+This seems to work when there are different numbers, but take a case like:
 
-- If number < index + 1 -> 
+`222222222222222222222222222222222222222222222222212122`
+
+Special consideration needs to be added here, as the numbers to remove are towards the end. The previously stated formula would leave you with the following:
+
+`222222212122`
+
+This is clearly not the highest combination of values possible here.
