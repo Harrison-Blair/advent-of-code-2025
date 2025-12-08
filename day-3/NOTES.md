@@ -5,8 +5,9 @@
 
 455 Possible solutions given the formula: 
 ```math
-\binom{15}{3} = \frac{15!}{3!(15-3)!}
+\{C(n,r)}=\binom{n}{r} = \frac{n!}{(r!(n-r)!)}
 ```
+Where `n` is the total number of total options and `r` is the number chosen options
 
 ## Oder of Ops
 
