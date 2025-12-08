@@ -5,7 +5,7 @@
 
 455 Possible solutions given the formula: 
 ```math
-\{C(n,r)}=\binom{n}{r} = \frac{n!}{(r!(n-r)!)}
+\C(n,r) =\binom{n}{r} = \frac{n!}{(r!(n-r)!)}
 ```
 Where `n` is the total number of total options and `r` is the number chosen options
 
