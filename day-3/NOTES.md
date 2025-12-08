@@ -4,7 +4,7 @@
 - Leading number is most important factor in size
 
 455 Possible solutions given the formula: 
-```Math
+```math
 \(\binom{15}{3} = \frac{15!}{3!(15-3)!}\)
 ```
 
