@@ -34,3 +34,9 @@ Special consideration needs to be added here, as the numbers to remove are towar
 `222222212122`
 
 This is clearly not the highest combination of values possible here.
+
+
+## Monotonic Stack
+- Wowee, turns out there is a simpler way to do this
+
+[Here is nearly the same problem, with opposite sorting criteria](https://www.geeksforgeeks.org/dsa/build-lowest-number-by-removing-n-digits-from-a-given-number/)
