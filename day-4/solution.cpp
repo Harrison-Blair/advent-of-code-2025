@@ -38,12 +38,8 @@ vector<pair<int, int>> getRollLocations(vector<vector<char>> grid) {
   return rolls;
 }
 
-int partOne(vector<vector<char>> grid) {
-  int total = 0;
-  vector<pair<int, int>> rolls = getRollLocations(grid);
-
-  for (auto& roll : rolls) { 
-    int numNeighbors = 0;
+bool isRemovable(vector<vector<char>> grid, pair<int, int> roll) {
+  int numNeighbors = 0;
     // Check all 8 possible directions
     for (int di = -1; di <= 1; di++) {
       for (int dj = -1; dj <= 1; dj++) {
@@ -56,8 +52,18 @@ int partOne(vector<vector<char>> grid) {
       }
     }
     if (numNeighbors < 4) {
-      total++;
+      return true;
     }
+    return false;
+}
+
+int partOne(vector<vector<char>> grid) {
+  int total = 0;
+  vector<pair<int, int>> rolls = getRollLocations(grid);
+
+  for (pair<int, int>& roll : rolls) { 
+    if (isRemovable(grid, roll))
+      total++;
   }
   return total;
 }
