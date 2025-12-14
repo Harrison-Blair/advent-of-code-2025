@@ -1,6 +1,6 @@
 # Notes
 
-Another `C++` day it is. As I have written this I just wrapped up the `C# .NET` interview, which I belive went well. Through my practice and studying, I have refound a love for `C#`. I will certainly be looking to make a project involved with it soon (this will most likely be the push to create the RoR multiplayer map as I have desired for a while).
+Another `C++` day it is. As I have written this I just wrapped up the `C# .NET` interview, which I believe went well. Through my practice and studying, I have refound a love for `C#`. I will certainly be looking to make a project involved with it soon (this will most likely be the push to create the RoR multiplayer map as I have desired for a while).
 
 ## Initial Observations
 
