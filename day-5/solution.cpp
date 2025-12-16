@@ -1,7 +1,8 @@
 #include <fstream>
 #include <iostream>
-#include <unordered_set>
-#include <utility>
+
+#include <algorithm>
+
 #include <vector>
 
 using namespace std;
@@ -21,7 +22,7 @@ pair<ulong, ulong> convertRange(string sRange) {
   return pair(n1, n2);
 }
 
-pair<vector<pair<ulong, ulong>> , vector<ulong>> readInput(string fileName) {
+pair<vector<pair<ulong, ulong>>, vector<ulong>> readInput(string fileName) {
   vector<pair<ulong, ulong>> codeRanges;
   vector<ulong> codes;
 
@@ -56,12 +57,32 @@ int partOne(vector<pair<ulong, ulong>> codeRanges, vector<ulong> codes) {
   for (auto& code : codes) {
     for (auto& range : codeRanges) {
       if (range.first <= code && code <= range.second) {
-        cout << range.first << "\t<\t" << code << "\t<\t" << range.second << endl;
         total++;
         break;
       }
     }
   }
+
+  return total;
+}
+
+ulong partTwo(vector<pair<ulong, ulong>> codeRanges) {
+  ulong total = 0;
+  vector<pair<ulong, ulong>> merged;
+  sort(codeRanges.begin(), codeRanges.end());
+
+  merged.push_back(codeRanges[0]);
+  for (int i = 1; i < codeRanges.size(); i++) {
+    pair<ulong, ulong>& last = merged.back(), cur = codeRanges[i];
+
+    if (cur.first <= last.second + 1)
+      last.second = max(last.second, cur.second);
+    else
+      merged.push_back(cur);
+  }
+
+  for (auto& range : merged)
+    total += range.second - range.first + 1;
 
   return total;
 }
@@ -72,6 +93,7 @@ int main() {
   auto [validCodes, codes] = readInput(input);
 
   cout << "[RESULT] " << partOne(validCodes, codes) << endl;
+  cout << "[RESULT] " << partTwo(validCodes) << endl;
 
   return 0;
 }
