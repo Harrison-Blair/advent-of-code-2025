@@ -2,3 +2,4 @@
 members = [
   "./day-6/solution/"
 ]
+resolver = "3"
