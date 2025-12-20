@@ -1,5 +1,4 @@
 [workspace]
 members = [
-  "./day-6/solution/"
-]
+  "./day-6/d6-solution/", "day-8/d8-solution"]
 resolver = "3"
