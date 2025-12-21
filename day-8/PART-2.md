@@ -1,4 +1,4 @@
---- Part Two ---
+# Part Two
 
 The Elves were right; they definitely don't have enough extension cables. You'll need to keep connecting junction boxes together until they're all in one large circuit.
 

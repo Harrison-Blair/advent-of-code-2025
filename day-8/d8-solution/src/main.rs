@@ -22,10 +22,13 @@ fn part_one(electrical_boxes: Vec<Coordinate>) {
             edges.push((dist_sq, i, j));
         }
     }
-
     edges.sort_unstable_by_key(|k| k.0);
 
-    let limit = if electrical_boxes.len() < 100 { 10 } else { 1000 };
+    let limit = if electrical_boxes.len() < 100 {
+        10
+    } else {
+        1000
+    };
     for (_dist, i, j) in edges.iter().take(limit) {
         uf.union(*i, *j);
     }
@@ -35,6 +38,46 @@ fn part_one(electrical_boxes: Vec<Coordinate>) {
 
     let result: usize = sizes.iter().take(3).product();
     println!("Result: {}", result);
+}
+
+// Second Part to day-8 solution
+// Connect close pairs, until everything is in ONE circut
+fn part_two(electrical_boxes: Vec<Coordinate>) {
+    let n = electrical_boxes.len();
+    let mut uf = UnionFind::new(n);
+
+    let mut num_components = n;
+    
+    let mut edges = Vec::new();
+    for i in 0..n {
+        for j in (i + 1)..n {
+            let b1 = &electrical_boxes[i];
+            let b2 = &electrical_boxes[j];
+
+            let dx = b1.x as i64 - b2.x as i64;
+            let dy = b1.y as i64 - b2.y as i64;
+            let dz = b1.z as i64 - b2.z as i64;
+            let dist_sq = dx * dx + dy * dy + dz * dz;
+
+            edges.push((dist_sq, i, j));
+        }
+    }
+    edges.sort_unstable_by_key(|k| k.0);
+
+    for (_dist, i, j) in edges {
+        // Check if they are already connected
+        if uf.find(i) != uf.find(j) {
+            uf.union(i, j);
+            num_components -= 1;
+
+            if num_components == 1 {
+                let result = (electrical_boxes[i].x as u128) * (electrical_boxes[j].x as u128);
+                println!("All connected! Last pair: {} and {}", i, j);
+                println!("Result (x1 * x2): {}", result);
+                return;
+            }
+        }
+    }
 }
 
 fn main() {
@@ -49,5 +92,6 @@ fn main() {
         file_name
     );
 
-    part_one(electrical_boxes);
+    part_one(electrical_boxes.clone());
+    part_two(electrical_boxes.clone());
 }
