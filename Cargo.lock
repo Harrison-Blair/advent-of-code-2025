@@ -7,5 +7,9 @@ name = "d8-solution"
 version = "0.1.0"
 
 [[package]]
+name = "d9-solution"
+version = "0.5.0"
+
+[[package]]
 name = "solution"
 version = "1.0.0"
